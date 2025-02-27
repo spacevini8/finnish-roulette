@@ -8,6 +8,7 @@ Inspired by a video my classmate [@leonardopoerio](https://github.com/leonardopo
 
 [demo video (outdated)](https://youtu.be/QRNtLfarH1s)
 
+now inculdes experimental GUI mode
 
 # WARNING
 Please be smart and DO NOT try this on your main computer or a computer that has something important on it, use a VM or smth
